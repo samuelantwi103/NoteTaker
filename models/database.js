@@ -39,11 +39,11 @@ class Database {
     }
     // this.data = databaseData
 
-    this.saveDB()
+    this.save()
     console.log("DB Connected successfully");
     // console.log(this.data)
 
-    // saveDB(databaseData)
+    // save(databaseData)
   }
 
   setVersion(version) {
@@ -77,39 +77,29 @@ class Database {
     } else {
       // console.log(index)
       console.log("username already exists")
-      this.saveDB()
+      this.save()
       return false
     }
     // console.log(this.data)
-    this.saveDB()
+    this.save()
     return true
   }
 
   async loginUser(username, email, password) {
-    var userInfo
-    var token
-    if (username != null) {
-      userInfo = this.data.find((userData =>
-        userData.username === username
-      ))
-    } else if (email != null) {
-      userInfo = this.data.find((userData =>
-        userData.email === email
-      ))
-      console.log(userInfo)
-    }
-    else {
-      console.log("Please provide an email or username")
-      return false
-    }
-    // console.log(userInfo)
+    let token
+    const userInfo = this.findUser(username, email)
+    console.log(userInfo)
 
     if (userInfo !== undefined) {
+      if (!userInfo) {
+        console.log("User not found")
+        return false
+      }
       const isValidPassword = await bcrypt.compare(password, userInfo.password)
       // console.log(userInfo)
       if (!isValidPassword) {
         console.log("Wrong password")
-        this.saveDB()
+        this.save()
         return
       }
 
@@ -137,7 +127,7 @@ class Database {
         ))
         this.data[index] = userInfo
       }
-      console.log(this.data)
+      // console.log(this.data)
 
       // Create Session
       await User.createSession(username, email, password, userInfo)
@@ -146,16 +136,38 @@ class Database {
     } else {
       // console.log(userInfo)
       console.log("User does not exist")
-      this.saveDB()
+      this.save()
       return false
     }
 
     // console.log(this.data)
-    this.saveDB()
+    this.save()
     return { status: true, token }
   }
 
-  saveDB() {
+  findUser(username, email) {
+    var userInfo
+    
+    if (username != null) {
+      userInfo = this.data.find((userData =>
+        userData.username === username
+      ))
+
+    } else if (email != null) {
+      userInfo = this.data.find((userData =>
+        userData.email === email
+      ))
+
+      // console.log(userInfo)
+    }
+    else {
+      console.log("Please provide an email or username")
+      return false
+    }
+    return userInfo
+  }
+
+  save() {
     fs.writeFileSync('./database/db.json', JSON.stringify({
       title: this.title,
       version: this.version,

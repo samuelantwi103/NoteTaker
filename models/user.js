@@ -52,6 +52,25 @@ class User {
     return new User(userInfo.id, userInfo.firstName, userInfo.lastName, userInfo.otherNames, userInfo.role, username, email, password, userInfo.dateCreated, userInfo.dateUpdated, userInfo.notes, userInfo.token)
   }
 
+  static findNote(username, email) {
+    // var userInfo
+    // var token
+    // if (username != null) {
+    //   userInfo = this.data.find((userData =>
+    //     userData.username === username
+    //   ))
+    // } else if (email != null) {
+    //   userInfo = this.data.find((userData =>
+    //     userData.email === email
+    //   ))
+    //   // console.log(userInfo)
+    // }
+    // else {
+    //   console.log("Please provide an email or username")
+    //   return false
+    // }
+  }
+
   getInfo() {
     return {
       id: this.id,

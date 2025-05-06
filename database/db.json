@@ -2,7 +2,7 @@
   "title": "Note Taker",
   "version": "1.0.0",
   "dateCreated": "2025-05-02T19:01:31.357Z",
-  "dateUpdated": "2025-05-05T16:22:37.643Z",
+  "dateUpdated": "2025-05-06T14:06:36.268Z",
   "data": [
     {
       "id": "13852d60-445e-45e1-bde1-358cba8c4ceb",
@@ -14,8 +14,8 @@
       "role": "admin",
       "password": "$2b$10$hCizVDOyVM9SQJyx7h96leD4Jj0sW6sAaKh9iufUA6Jv7L1ztDS0.",
       "dateCreated": "2025-05-02T23:44:30.168Z",
-      "dateUpdated": "2025-05-05T16:16:47.985Z",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzODUyZDYwLTQ0NWUtNDVlMS1iZGUxLTM1OGNiYThjNGNlYiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY0NjE4MDcsImV4cCI6MTc0NjQ2MjQwN30.XotQzfcFHx0-XoEWPtzeQ0U_IvT3gmb373kYu_h6AIs",
+      "dateUpdated": "2025-05-06T14:06:36.268Z",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzODUyZDYwLTQ0NWUtNDVlMS1iZGUxLTM1OGNiYThjNGNlYiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY1NDAzOTYsImV4cCI6MTc0NjU0MDk5Nn0.d2jgxdMlX6bGxvEEbzXqhN93mgpuAGuYGFWRDo570PQ",
       "notes": []
     },
     {
@@ -28,8 +28,8 @@
       "role": "user",
       "password": "$2b$10$6e3t9.TP8nsxKQnrRRCS8eqWrpnJX5O6yKzrrYYnBzA.62FYcYMAy",
       "dateCreated": "2025-05-02T23:47:10.640Z",
-      "dateUpdated": "2025-05-02T23:47:10.640Z",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhMzAyZWU4LWFhMDUtNGRlOC1iNzYzLWY2NTYzNmEyMDBhMiIsInVzZXJuYW1lIjoicm9sYW5kYW50d2kyMDMiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjQ0MDA1MCwiZXhwIjoxNzQ2NDQwNjUwfQ.aaIm94FZVGKa09zNw7OUIUHuAaksNH3Bdp5Pw6zx24E",
+      "dateUpdated": "2025-05-06T12:14:39.429Z",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjlhMzAyZWU4LWFhMDUtNGRlOC1iNzYzLWY2NTYzNmEyMDBhMiIsInVzZXJuYW1lIjoicm9sYW5kYW50d2kyMDMiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjUzMzY3OSwiZXhwIjoxNzQ2NTM0Mjc5fQ.F5i4SuVxHND11ESfvl0Q5UhHf2z_y3Y064xqJn0NC_Y",
       "notes": []
     },
     {

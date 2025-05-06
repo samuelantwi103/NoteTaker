@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
   try {
     const header = req.headers.authorization
     const token = header && header.split(' ')[1]
-    console.log(token)
+    // console.log(token)
     if (!token) {
       return res.status(500).json({
         status: false,
@@ -15,7 +15,7 @@ const authMiddleware = (req, res, next) => {
     }
 
     req.userData = jwt.verify(token, process.env.JWT_SECRET_KEY)
-    console.log(req.userData)
+    // console.log(req.userData)
   } catch (e) {
     return res.status(500).json({
       status: false,
