@@ -2,20 +2,19 @@
   "title": "Note Taker",
   "version": "1.0.0",
   "dateCreated": "2025-05-02T19:01:31.357Z",
-  "dateUpdated": "2025-05-06T14:06:36.268Z",
+  "dateUpdated": "2025-05-06T21:12:55.231Z",
   "data": [
     {
-      "id": "13852d60-445e-45e1-bde1-358cba8c4ceb",
+      "id": "bc2fee19-5842-42f9-98a2-ac3681639436",
       "username": "samuelantwi103",
       "email": "samuelantwi103@gmail.com",
       "firstName": "Samuel",
       "lastName": "Antwi",
       "otherNames": "K. A.",
       "role": "admin",
-      "password": "$2b$10$hCizVDOyVM9SQJyx7h96leD4Jj0sW6sAaKh9iufUA6Jv7L1ztDS0.",
+      "password": "$2b$10$1HXe/mXXWmM0Vb6P7qZ4Y.GT.VCv7ceID8Hp.5gBeR0EpvBeK4Ipe",
       "dateCreated": "2025-05-02T23:44:30.168Z",
-      "dateUpdated": "2025-05-06T14:06:36.268Z",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzODUyZDYwLTQ0NWUtNDVlMS1iZGUxLTM1OGNiYThjNGNlYiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY1NDAzOTYsImV4cCI6MTc0NjU0MDk5Nn0.d2jgxdMlX6bGxvEEbzXqhN93mgpuAGuYGFWRDo570PQ",
+      "dateUpdated": "2025-05-06T21:12:55.136Z",
       "notes": []
     },
     {
@@ -40,10 +39,9 @@
       "lastName": "Antwi",
       "otherNames": "K. W.",
       "role": "user",
-      "password": "$2b$10$vdzJxuovqP8k3wHdiftWde9n78uc.5ObnP/f8TzDXbcrfCDmq5L0W",
+      "password": "$2b$10$GmgbJ.MMaIdVf9tRxZn/KuxE8OFI7kwyZeNrLWx7ypCVPfUanUWgm",
       "dateCreated": "2025-05-03T06:09:45.248Z",
-      "dateUpdated": "2025-05-03T06:09:45.248Z",
-      "token": "",
+      "dateUpdated": "2025-05-06T21:01:11.326Z",
       "notes": []
     }
   ]

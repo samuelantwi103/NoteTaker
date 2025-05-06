@@ -7,6 +7,6 @@ const isAdminMiddleware = require("../middleware/admin-middleware");
 const route = Router()
 
 route.get('/database', authMiddleware, isAdminMiddleware, backupDatabse)
-route.get('/user-data', authMiddleware, isAdminMiddleware, backupUserData)
+route.get('/user-data', authMiddleware, backupUserData)
 
 module.exports = route

@@ -5,10 +5,10 @@ const uuid = require('uuid')
 
 class User {
   constructor(id, firstName, lastName, otherNames, role = "user", username, email, password, dateCreated, dateUpdated, notes, token) {
-    if (id == null) {
-      this.id = id
-    } else {
+    if (id === null) {
       this.id = uuid.v4()
+    } else {
+      this.id = id
     }
     this.firstName = firstName
     this.lastName = lastName

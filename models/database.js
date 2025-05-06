@@ -3,8 +3,6 @@ const User = require("./user")
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-// const data = []
-// data.
 
 class Database {
   constructor(title, version, databaseData) {
@@ -46,15 +44,18 @@ class Database {
     // save(databaseData)
   }
 
+  // Set database version
   setVersion(version) {
     this.version = version
   }
 
+  // Create database session
   static createSession(data) {
     return new Database(data.title, data.version, data)
 
   }
 
+  // get database info
   getInfo() {
     return {
       title: this.title,
@@ -65,7 +66,8 @@ class Database {
     }
   }
 
-  async createUser(user) {
+  // Create a new user
+  createUser(user) {
     const index = this.data.findIndex((userData =>
       userData.username === user.username
     ))
@@ -85,10 +87,11 @@ class Database {
     return true
   }
 
+  // Login a user
   async loginUser(username, email, password) {
     let token
     const userInfo = this.findUser(username, email)
-    console.log(userInfo)
+    // console.log(userInfo)
 
     if (userInfo !== undefined) {
       if (!userInfo) {
@@ -145,9 +148,10 @@ class Database {
     return { status: true, token }
   }
 
+  // Find a user
   findUser(username, email) {
     var userInfo
-    
+
     if (username != null) {
       userInfo = this.data.find((userData =>
         userData.username === username
@@ -167,6 +171,43 @@ class Database {
     return userInfo
   }
 
+  // Ge
+  findUserId(username, email) {
+    var userId
+    if (username != null) {
+      userId = this.data.findIndex((userData =>
+        userData.username === username
+      ))
+
+    } else if (email != null) {
+      userId = this.data.findIndex((userData =>
+        userData.email === email
+      ))
+
+      // console.log(userInfo)
+    }
+    else {
+      console.log("Please provide an email or username")
+      return false
+    }
+    return userId
+  }
+
+  updateUser(user) {
+    const index = this.data.findIndex((userData =>
+      userData.username === user.username
+    ))
+
+    if (index === -1) {
+      console.log("User not found")
+      return false
+    }
+
+    this.data[index] = user.getInfo()
+    this.save()
+    return true
+  }
+
   save() {
     fs.writeFileSync('./database/db.json', JSON.stringify({
       title: this.title,
@@ -181,6 +222,81 @@ class Database {
       }
       return
     })
+  }
+
+  createOTP(username, email) {
+    const index = this.findUserId(username, email)
+    const userData = this.findUser(username, email)
+
+
+    if (index === -1) {
+      console.log("User not found")
+      return false
+    }
+    const otp = Math.floor(100000 + Math.random() * 900000)
+    userData.dateUpdated = new Date()
+    userData.otp = otp
+
+    this.data[index] = userData
+    console.log(`OTP Generated: ${otp}`)
+    this.save()
+    return otp
+  }
+
+  verifyOTP(username, email, otp) {
+    const userData = this.findUser(username, email)
+    if (userData !== undefined) {
+      if (!userData) {
+        console.log("User not found")
+        return false
+      }
+
+      if (!userData.otp) {
+        console.log('No existing OTP Request found!')
+
+        return {
+          success: false,
+          message: 'No existing OTP Request found!'
+        }
+      }
+
+    } else {
+      // console.log(userInfo)
+      console.log("User does not exist")
+      this.save()
+      return false
+    }
+    if (userData.otp !== otp) {
+      return {
+        success: false,
+        message: 'Invalid OTP'
+      }
+    }
+    this.clearOTP(username, email)
+    this.save()
+    return true
+  }
+
+  clearOTP(username, email) {
+    const index = this.findUserId(username, email)
+    const userData = this.findUser(username, email)
+
+
+    if (index === -1) {
+      console.log("User not found")
+      return false
+    }
+    // Update date
+    userData.dateUpdated = new Date()
+
+    const { id, firstName, lastName, otherNames, role, password, dateCreated, dateUpdated, notes, token } = userData
+
+    username = userData.username
+    email = userData.email
+
+    this.data[index] = new User(id, firstName, lastName, otherNames, role, username, email, password, dateCreated, dateUpdated, notes, token).getInfo()
+    this.save()
+    return true
   }
 
 }
