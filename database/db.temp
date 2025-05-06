@@ -1,0 +1,105 @@
+{
+  "title": "Note Taker",
+  "version": "1.0.0",
+  "dateCreated": "2025-05-02T19:01:31.357Z",
+  "dateUpdated": "2025-05-05T08:53:22.731Z",
+  "data": [
+    {
+      "id": "13852d60-445e-45e1-bde1-358cba8c4ceb",
+      "username": "samuelantwi103",
+      "email": "samuelantwi103@gmail.com",
+      "firstName": "Samuel",
+      "lastName": "Antwi",
+      "otherNames": "K. A.",
+      "role": "admin",
+      "password": "$2b$10$hCizVDOyVM9SQJyx7h96leD4Jj0sW6sAaKh9iufUA6Jv7L1ztDS0.",
+      "dateCreated": "2025-05-02T23:44:30.168Z",
+      "dateUpdated": "2025-05-02T23:44:30.168Z",
+      "token": "",
+      "notes": []
+    },
+    {
+      "id": "9a302ee8-aa05-4de8-b763-f65636a200a2",
+      "username": "rolandantwi203",
+      "email": "rolandantwi203@gmail.com",
+      "firstName": "Roland",
+      "lastName": "Antwi",
+      "otherNames": "K. A.",
+      "role": "user",
+      "password": "$2b$10$6e3t9.TP8nsxKQnrRRCS8eqWrpnJX5O6yKzrrYYnBzA.62FYcYMAy",
+      "dateCreated": "2025-05-02T23:47:10.640Z",
+      "dateUpdated": "2025-05-02T23:47:10.640Z",
+      "token": "",
+      "notes": []
+    },
+    {
+      "id": "c0378b93-e1b0-4c22-901a-eb36617cb4e2",
+      "username": "gilbertantwi203",
+      "email": "gilbertantwi203@gmail.com",
+      "firstName": "Gilbert",
+      "lastName": "Antwi",
+      "otherNames": "K. W.",
+      "role": "user",
+      "password": "$2b$10$vdzJxuovqP8k3wHdiftWde9n78uc.5ObnP/f8TzDXbcrfCDmq5L0W",
+      "dateCreated": "2025-05-03T06:09:45.248Z",
+      "dateUpdated": "2025-05-03T06:09:45.248Z",
+      "token": "",
+      "notes": []
+    }
+  ]
+}
+
+
+  // console.log(db.getInfo())
+  // // Creating DB
+  // try {
+  //   //  fs.accessSync('./data/db.txt')
+  //   const fileStat = fs.statSync('./database/db.json')
+
+  //   if (fileStat.isFile()) {
+  //     console.log("DB File exists")
+  //   } else {
+  //     // const folerStat = fs.statSync('./data')
+  //     // if (!folerStat.isDirectory()) {
+  //     //   console.log(`Creating folder /data`)
+  //     // }
+  //     console.log("DB File does not exists\nCreating DB File")
+  //   }
+  // } catch (e) {
+  //   // console.log(`DB File does not exists:\n${e}`)
+  //   console.log("Creating DB File")
+  //   try {
+  //     fs.mkdir('./database', (err) => {
+  //       if (err) {
+  //         console.log(err)
+  //       }
+  //     })
+  //   } catch (e) {
+  //     // console.log("")
+  //   }
+  //   console.log("DB file created")
+  // }
+  // fs.writeFile('database/db.json', '',{flag: "a"}, (err) => {
+  //   if (err) {
+  //     console.log(err)
+  //     return
+  //   }
+  // })
+
+  // Read DB Data
+  // console.log(database)
+  // fs.readFile('./database/db.json', 'utf8', (err, database) => {
+  //   if (err) {
+  //     console.log("Something went wrong")
+  //     return
+  //   }
+  //   database = JSON.parse(database)
+  //   console.log(database)
+  // })
+
+  //   db.total = 3
+  // // Write to DB
+  // fs.writeFile('./database/db.json', JSON.stringify(database, null, 2), (err) => {
+  //   if (err)
+  //     console.log(err)
+  // })

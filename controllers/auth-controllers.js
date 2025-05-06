@@ -1,0 +1,79 @@
+const { db } = require("../database/db")
+const User = require("../models/user")
+const bcrypt = require('bcryptjs')
+
+
+const loginUser = async (req, res) => {
+  const { username, email, password } = req.body
+  var isLoggedIn
+  try {
+    // const user = User.createSession(username, password)
+
+    isLoggedIn = await db.loginUser(username, email, password)
+    // console.log(isLoggedIn)
+
+    if (!isLoggedIn) {
+      if (isLoggedIn == undefined) {
+        res.status(406).json({
+          success: false,
+          message: "Wrong credentials",
+        })
+        return
+      }
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+      })
+      return
+    }
+    // console.log("is not logged in")
+
+  } catch (e) {
+    console.log(e)
+    res.status(404).json({
+      success: false,
+      message: "An error occurred",
+      error: e.toString()
+    })
+    return
+  }
+  res.status(200).json({
+    success: true,
+    message: "User logged in successfully",
+    token: isLoggedIn.token
+  })
+}
+
+const registerUser = async (req, res) => {
+  const { firstName, lastName, otherNames, username, email, password, role } = req.body
+
+  try {
+    const hpassword = await bcrypt.hash(password, await bcrypt.genSalt(10))
+
+    const user = new User(firstName, lastName, otherNames, role, username, email, hpassword, null, null, null, null)
+    const isCreated = await db.createUser(user)
+
+    if (!isCreated) {
+      res.status(406).json({
+        success: false,
+        message: "Username already exists",
+      })
+      return
+    }
+    // console.log(user.getInfo())
+
+  } catch (e) {
+    res.status(406).json({
+      success: false,
+      message: "An error occurred",
+      error: e.toString()
+    })
+    return
+  }
+  res.status(200).json({
+    success: true,
+    message: "User registerd in successfully"
+  })
+}
+
+module.exports = { loginUser, registerUser }
