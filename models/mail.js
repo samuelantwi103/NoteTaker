@@ -1,38 +1,38 @@
 const nodemailer = require('nodemailer')
 
-class Mail {
-  constructor(receipients, subject, text, html) {
+class MailService {
+  constructor() {
     this.address = process.env.EMAIL_ADDRESS
     this.password = process.env.EMAIL_PASSWORD
     this.host = process.env.EMAIL_HOST
     this.port = process.env.EMAIL_PORT
     this.senderName = process.env.EMAIL_SENDER_NAME
-
-    this.receipients = receipients
-    this.subject = subject
-    this.text = text
-    this.html = html
+    this.service = process.env.EMAIL_SERVICE
 
     const transporter = nodemailer.createTransport({
-      host: this.address,
-      port: this.port,
+      // host: this.host,
+      // port: this.port,
+      service: this.service,
       secure: false,
       auth: {
         user: this.address,
-        pass: this.password
+        pass: this.password,
+        
       }
     })
     this.transporter = transporter
   }
 
   static initialize() {
-    return new Mail(null, null, null, null)
+    console.log("Mail Service initialized")
+    return new MailService()
   }
 
-  sendMail(receipients, subject, text, html) {
+  async sendMail(receipients, subject, text, html) {
+    try {
 
-    (async () => {
-      const receipientString = ""
+      // await (async () => {
+      var receipientString = ""
       receipients.forEach((userMail, index) => {
         if (index === receipients.length || index === 0) {
           receipientString += userMail
@@ -46,11 +46,22 @@ class Mail {
       const info = await this.transporter.sendMail({
         from: `"${this.senderName}" <${this.address}>`,
         to: receipientString,
+        subject: subject,
         text: text,
-        html: this.html
+        html: html
       })
       console.log("Message sent: ", info.messageId)
-    })()
+      // })()
 
+    } catch (error) {
+      console.log(error)
+      return {
+        status: false,
+        error: error.message
+      }
+    }
+    return true
   }
 }
+
+module.exports = MailService

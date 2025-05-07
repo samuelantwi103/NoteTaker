@@ -1,6 +1,7 @@
 const { db } = require("../database/db")
+const { mail } = require("../services/mail-service")
 
-const createOTP = (req, res) => {
+const createOTP = async (req, res) => {
   const { username, email } = req.body
 
   const otp = db.createOTP(username, email)
@@ -10,11 +11,55 @@ const createOTP = (req, res) => {
       message: "User not found!"
     })
   }
+  userInfo = db.findUser(username, email)
+
+  try {
+    html = `<body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333;">
+  <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <h2 style="color: #007bff;">Note Taker OTP Request</h2>
+    <p>Hi <strong>${userInfo.firstName}</strong>, from <strong>Note Taker</strong> 👋🏽</p>
+    <p>To continue with your request, please use the One-Time Password (OTP) below:</p>
+
+    <p style="font-size: 24px; font-weight: bold; color: #28a745; background-color: #e9f7ef; padding: 10px; text-align: center; border-radius: 4px;">
+      ${otp}
+    </p>
+
+    <p style="margin-top: 20px;">Please <strong>do not share this code</strong> with anyone — even if they claim to be from our team.</p>
+
+    <p>If you didn’t request this code, you can safely ignore this message or <a href="mailto:notetakerserver@gmail.com">contact our support team</a>.</p>
+
+    <p style="margin-top: 30px;">Thank you,<br>
+    <strong>Note Taker Security Team</strong></p>
+  </div>
+</body>`
+    const message = await mail.sendMail([email], "Note Taker OTP Request", null, html);
+    console.log(message)
+    if (!message) {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to send OTP"
+      })
+    }
+    if (message.status === false) {
+      return res.status(500).json({
+        success: false,
+        message: "Something went wrong",
+        error: message.error
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    return res.status(501).json({
+      success: false,
+      message: "Something went wrong",
+      error: error.toString()
+    })
+  }
 
   return res.status(200).json({
     success: true,
     message: "OTP generated successfully!",
-    otp
+    // otp
   })
 }
 

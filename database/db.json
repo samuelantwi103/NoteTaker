@@ -2,7 +2,7 @@
   "title": "Note Taker",
   "version": "1.0.0",
   "dateCreated": "2025-05-02T19:01:31.357Z",
-  "dateUpdated": "2025-05-06T22:36:40.263Z",
+  "dateUpdated": "2025-05-07T11:44:32.010Z",
   "data": [
     {
       "id": "bc2fee19-5842-42f9-98a2-ac3681639436",
@@ -14,9 +14,10 @@
       "role": "admin",
       "password": "$2b$10$1HXe/mXXWmM0Vb6P7qZ4Y.GT.VCv7ceID8Hp.5gBeR0EpvBeK4Ipe",
       "dateCreated": "2025-05-02T23:44:30.168Z",
-      "dateUpdated": "2025-05-06T22:36:40.262Z",
+      "dateUpdated": "2025-05-07T11:44:32.010Z",
       "notes": [],
-      "otp": 382401
+      "otp": 344198,
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJjMmZlZTE5LTU4NDItNDJmOS05OGEyLWFjMzY4MTYzOTQzNiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY2MDk1ODcsImV4cCI6MTc0NjYxMDE4N30.qZf0DfvaAehJOpucOIIdz77HRTAQfoq9S7T4Q7SU3kM"
     },
     {
       "id": "9a302ee8-aa05-4de8-b763-f65636a200a2",

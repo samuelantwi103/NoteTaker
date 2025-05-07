@@ -6,10 +6,10 @@ const authRoute = require('./routes/auth-routes')
 const homeRoute = require('./routes/home-routes')
 const backupRoute = require('./routes/backup-routes')
 
-const { db } = require('./database/db')
+// const { db } = require('./database/db')
 // const db = require('./database/db.json')
 
-db
+// db
 // initDB()
 // save({})
 
