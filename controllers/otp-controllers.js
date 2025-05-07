@@ -16,7 +16,7 @@ const createOTP = async (req, res) => {
   try {
     html = `<body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333;">
   <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <h2 style="color: #007bff;">Note Taker OTP Request</h2>
+    <h3 style="color: #28a745;">Note Taker OTP Request</h3>
     <p>Hi <strong>${userInfo.firstName}</strong>, from <strong>Note Taker</strong> 👋🏽</p>
     <p>To continue with your request, please use the One-Time Password (OTP) below:</p>
 
