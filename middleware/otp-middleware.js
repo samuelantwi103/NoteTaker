@@ -29,8 +29,6 @@ const confirmOTP = (req, res, next) => {
   }
   console.log('OTP Verified')
   next()
-
-
 }
 
 module.exports = { confirmOTP }

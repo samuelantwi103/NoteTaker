@@ -266,7 +266,7 @@ class Database {
       this.save()
       return false
     }
-    if (userData.otp !== otp) {
+    if (userData.otp.toString() !== otp.toString()) {
       return {
         success: false,
         message: 'Invalid OTP'

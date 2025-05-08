@@ -2,7 +2,7 @@
   "title": "Note Taker",
   "version": "1.0.0",
   "dateCreated": "2025-05-02T19:01:31.357Z",
-  "dateUpdated": "2025-05-07T11:54:35.128Z",
+  "dateUpdated": "2025-05-08T11:08:54.477Z",
   "data": [
     {
       "id": "bc2fee19-5842-42f9-98a2-ac3681639436",
@@ -14,7 +14,7 @@
       "role": "admin",
       "password": "$2b$10$WZrgDkdGkeJWryG4SOvgz./ghCfY4i5.fm/WOYEr6OIs/VT4ZX16G",
       "dateCreated": "2025-05-02T23:44:30.168Z",
-      "dateUpdated": "2025-05-07T11:54:35.048Z",
+      "dateUpdated": "2025-05-08T11:08:54.476Z",
       "notes": []
     },
     {
