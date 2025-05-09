@@ -4,7 +4,7 @@ const { mail } = require("../services/mail-service")
 const createOTP = async (req, res) => {
   const { username, email } = req.body
 
-  const otp = db.createOTP(username, email)
+  const otp = db.createOTP(username, email, null)
   if (!otp) {
     return res.status(404).json({
       success: false,
@@ -43,16 +43,14 @@ const createOTP = async (req, res) => {
     if (message.status === false) {
       return res.status(500).json({
         success: false,
-        message: "Something went wrong",
-        error: message.error
+        message: `An error occurred: ${message.error}`
       })
     }
   } catch (error) {
     console.log(error)
     return res.status(501).json({
       success: false,
-      message: "Something went wrong",
-      error: error.toString()
+      message: `An error occurred: ${error.toString()}`
     })
   }
 
@@ -67,7 +65,6 @@ const verifyOTP = (req, res) => {
   try {
     const { username, email, otp } = req.body
     const isVerified = db.verifyOTP(username, email, otp)
-    // console.log(isVerified)
 
     if (!isVerified) {
       return res.status(404).json({
@@ -85,8 +82,7 @@ const verifyOTP = (req, res) => {
     console.log(error)
     return res.status(500).json({
       success: false,
-      message: "Something went wrong",
-      error: error.toString()
+      message: `An error occurred: ${error.toString()}`
     })
   }
   console.log('OTP Verified')

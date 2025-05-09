@@ -10,7 +10,7 @@ const loginUser = async (req, res) => {
     // const user = User.createSession(username, password)
 
     isLoggedIn = await db.loginUser(username, email, password)
-    // console.log(isLoggedIn)
+    console.log(isLoggedIn)
 
     if (!isLoggedIn) {
       if (isLoggedIn == undefined) {
@@ -32,8 +32,7 @@ const loginUser = async (req, res) => {
     console.log(e)
     res.status(404).json({
       success: false,
-      message: "An error occurred",
-      error: e.toString()
+      message: `An error occurred: ${e.toString()}`
     })
     return
   }
@@ -45,7 +44,7 @@ const loginUser = async (req, res) => {
 }
 
 const registerUser = async (req, res) => {
-  const { firstName, lastName, otherNames, username, email, password, role } = req.body
+  const { firstName, lastName, otherNames, username, email, password, role, otp } = req.body
 
   try {
     const hpassword = await bcrypt.hash(password, await bcrypt.genSalt(10))
@@ -53,10 +52,10 @@ const registerUser = async (req, res) => {
     const user = new User(null, firstName, lastName, otherNames, role, username, email, hpassword, null, null, null, null)
     const isCreated = db.createUser(user)
 
-    if (!isCreated) {
+    if (isCreated.success === false) {
       res.status(406).json({
         success: false,
-        message: "Username already exists",
+        message: isCreated.message,
       })
       return
     }
@@ -65,11 +64,11 @@ const registerUser = async (req, res) => {
   } catch (e) {
     res.status(406).json({
       success: false,
-      message: "An error occurred",
-      error: e.toString()
+      message: `An error occurred: ${e.toString()}`
     })
     return
   }
+  db.createOTP(username, email, otp)
   res.status(200).json({
     success: true,
     message: "User registered successfully"
@@ -113,8 +112,7 @@ const resetPassword = async (req, res) => {
     console.log(e)
     res.status(406).json({
       success: false,
-      message: "An error occurred",
-      error: e.toString()
+      message: `An error occurred: ${e.toString()}`
     })
     return
   }

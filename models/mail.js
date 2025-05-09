@@ -17,7 +17,7 @@ class MailService {
       auth: {
         user: this.address,
         pass: this.password,
-        
+
       }
     })
     this.transporter = transporter
@@ -57,7 +57,8 @@ class MailService {
       console.log(error)
       return {
         status: false,
-        error: error.message
+        error: (error.message === "No recipients defined") ? "Invalid email!!!" : error.message
+
       }
     }
     return true

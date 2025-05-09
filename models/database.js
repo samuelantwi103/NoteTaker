@@ -71,16 +71,30 @@ class Database {
     const index = this.data.findIndex((userData =>
       userData.username === user.username
     ))
-    if (index === -1) {
+    const emailIndex = this.data.findIndex((userData =>
+      userData.email === user.email
+    ))
+    if (index === -1 && emailIndex === -1) {
 
       // console.log(password)
       // console.log(index)
       this.data.push(user.getInfo())
-    } else {
+    } else if (index !== -1) {
       // console.log(index)
-      console.log("username already exists")
+      console.log("Username already exists")
       this.save()
-      return false
+      return {
+        success: false,
+        message: "Username already exists",
+      }
+    } else if (emailIndex !== -1) {
+      // console.log(index)
+      console.log("Email already exists")
+      this.save()
+      return {
+        success: false,
+        message: "Email already exists",
+      }
     }
     // console.log(this.data)
     this.save()
@@ -91,7 +105,7 @@ class Database {
   async loginUser(username, email, password) {
     let token
     const userInfo = this.findUser(username, email)
-    // console.log(userInfo)
+    console.log(userInfo)
 
     if (userInfo !== undefined) {
       if (!userInfo) {
@@ -150,19 +164,23 @@ class Database {
 
   // Find a user
   findUser(username, email) {
-    var userInfo
+    if (username != null || email != null) {
+      var userInfo
 
-    if (username != null) {
-      userInfo = this.data.find((userData =>
-        userData.username === username
-      ))
+      if (username != null) {
+        userInfo = this.data.find((userData =>
+          userData.username === username
+        ))
 
-    } else if (email != null) {
-      userInfo = this.data.find((userData =>
-        userData.email === email
-      ))
+      }
+      if (email != null) {
+        userInfo = this.data.find((userData =>
+          userData.email === email
+        ))
 
-      // console.log(userInfo)
+        // console.log(userInfo)
+      }
+
     }
     else {
       console.log("Please provide an email or username")
@@ -173,18 +191,20 @@ class Database {
 
   // Ge
   findUserId(username, email) {
-    var userId
-    if (username != null) {
-      userId = this.data.findIndex((userData =>
-        userData.username === username
-      ))
+    if (username != null || email != null) {
+      var userId
+      if (username != null) {
+        userId = this.data.findIndex((userData =>
+          userData.username === username
+        ))
 
-    } else if (email != null) {
-      userId = this.data.findIndex((userData =>
-        userData.email === email
-      ))
+      } if (email != null) {
+        userId = this.data.findIndex((userData =>
+          userData.email === email
+        ))
 
-      // console.log(userInfo)
+        // console.log(userInfo)
+      }
     }
     else {
       console.log("Please provide an email or username")
@@ -208,6 +228,22 @@ class Database {
     return true
   }
 
+  removeUser(user) {
+
+    const index = this.data.findIndex((userData =>
+      userData.username === user.username
+    ))
+
+    if (index === -1) {
+      console.log("User not found")
+      return false
+    }
+
+    this.data.splice(index, 1)
+    this.save()
+    return true
+  }
+
   save() {
     fs.writeFileSync('./database/db.json', JSON.stringify({
       title: this.title,
@@ -224,7 +260,7 @@ class Database {
     })
   }
 
-  createOTP(username, email) {
+  createOTP(username, email, otp) {
     const index = this.findUserId(username, email)
     const userData = this.findUser(username, email)
 
@@ -233,18 +269,26 @@ class Database {
       console.log("User not found")
       return false
     }
-    const otp = Math.floor(100000 + Math.random() * 900000)
+    // console.log(otp)
+    var newOTP = otp
+    if (otp === null) {
+      newOTP = Math.floor(100000 + Math.random() * 900000)
+    }
     userData.dateUpdated = new Date()
-    userData.otp = otp
+    userData.otp = newOTP
 
     this.data[index] = userData
-    console.log(`OTP Generated: ${otp}`)
+    // console.log(`OTP Generated: ${newOTP}`)
     this.save()
-    return otp
+    // console.log(newOTP)
+    return newOTP
+
   }
 
   verifyOTP(username, email, otp) {
     const userData = this.findUser(username, email)
+    
+
     if (userData !== undefined) {
       if (!userData) {
         console.log("User not found")
@@ -293,8 +337,8 @@ class Database {
 
     username = userData.username
     email = userData.email
-
-    this.data[index] = new User(id, firstName, lastName, otherNames, role, username, email, password, dateCreated, dateUpdated, notes, token).getInfo()
+    delete userData.otp
+    this.data[index] = userData
     this.save()
     return true
   }

@@ -24,8 +24,8 @@ const backupDatabse = (req, res) => {
 
 const backupUserData = (req, res) => {
   db.save()
-  const userData = db.findUser(req.userData.username, null)
-
+  let userData = db.findUser(req.userData.username, null)
+  delete userData.otp
   // console.log(userData)
 
   res.status(200).json({

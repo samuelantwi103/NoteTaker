@@ -1,5 +1,58 @@
 const { db } = require("../database/db")
+const { mail } = require("../services/mail-service")
 
+
+const verifyEmail = async (req, res, next) => {
+
+  const {  email, firstName } = req.body
+  const otp = Math.floor(100000 + Math.random() * 900000)
+  // console.log(isVerified)
+  try {
+    html = `<body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; color: #333;">
+    <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <h3 style="color: #28a745;">Note Taker OTP Request</h3>
+      <p>Hi <strong>${firstName}</strong> 👋🏽</p>
+      <p>To continue with your request, please use the One-Time Password (OTP) below:</p>
+  
+      <p style="font-size: 24px; font-weight: bold; color: #28a745; background-color: #e9f7ef; padding: 10px; text-align: center; border-radius: 4px;">
+        ${otp}
+      </p>
+  
+      <p style="margin-top: 20px;">Please <strong>do not share this code</strong> with anyone — even if they claim to be from our team.</p>
+  
+      <p>If you didn't request this code, you can safely ignore this message or <a href="mailto:notetakerserver@gmail.com">contact our support team</a>.</p>
+  
+      <p style="margin-top: 30px;">Thank you,<br>
+      <strong>Note Taker Security Team</strong></p>
+    </div>
+  </body>`
+    const message = await mail.sendMail([email], "Note Taker OTP Request", null, html);
+    console.log(message)
+    if (!message) {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to send OTP"
+      })
+    }
+    if (message.status === false) {
+      return res.status(500).json({
+        success: false,
+        message: `An error occurred: ${message.error}`
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    return res.status(501).json({
+      success: false,
+      message: `An error occurred: ${error.toString()}`
+    })
+  }
+
+  req.body.otp = otp
+
+
+  next();
+}
 
 const confirmOTP = (req, res, next) => {
   try {
@@ -23,12 +76,11 @@ const confirmOTP = (req, res, next) => {
     console.log(error)
     return res.status(500).json({
       success: false,
-      message: "Something went wrong",
-      error: error.toString()
+      message: `An error occurred: ${error.toString()}`
     })
   }
   console.log('OTP Verified')
   next()
 }
 
-module.exports = { confirmOTP }
+module.exports = { confirmOTP, verifyEmail }
