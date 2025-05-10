@@ -33,7 +33,7 @@ const createOTP = async (req, res) => {
   </div>
 </body>`
     const message = await mail.sendMail([email], "Note Taker OTP Request", null, html);
-    console.log(message)
+    // console.log(message)
     if (!message) {
       return res.status(500).json({
         success: false,

@@ -105,7 +105,7 @@ class Database {
   async loginUser(username, email, password) {
     let token
     const userInfo = this.findUser(username, email)
-    console.log(userInfo)
+    // console.log(userInfo)
 
     if (userInfo !== undefined) {
       if (!userInfo) {
@@ -213,9 +213,23 @@ class Database {
     return userId
   }
 
+  findUserById(id) {
+    var userInfo
+    if (id != null) {
+      userInfo = this.data.find((userData =>
+        userData.id === id
+      ))
+    }
+    else {
+      console.log("Please provide an id")
+      return false
+    }
+    return userInfo
+  }
+
   updateUser(user) {
     const index = this.data.findIndex((userData =>
-      userData.username === user.username
+      userData.id === user.id
     ))
 
     if (index === -1) {
@@ -287,7 +301,7 @@ class Database {
 
   verifyOTP(username, email, otp) {
     const userData = this.findUser(username, email)
-    
+
 
     if (userData !== undefined) {
       if (!userData) {
