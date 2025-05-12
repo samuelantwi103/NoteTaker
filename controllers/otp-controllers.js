@@ -32,7 +32,7 @@ const createOTP = async (req, res) => {
     <strong>Note Taker Security Team</strong></p>
   </div>
 </body>`
-    const message = await mail.sendMail([email], "Note Taker OTP Request", null, html);
+    const message = await mail.sendMail([userInfo.email], "Note Taker OTP Request", null, html);
     // console.log(message)
     if (!message) {
       return res.status(500).json({
