@@ -5,6 +5,7 @@ const express = require('express')
 const authRoute = require('./routes/auth-routes')
 const homeRoute = require('./routes/home-routes')
 const backupRoute = require('./routes/backup-routes')
+const userRoute = require('./routes/user-routes')
 
 // const { db } = require('./database/db')
 // const db = require('./database/db.json')
@@ -24,6 +25,7 @@ app.use(express.json())
 // Routes
 app.use('/auth', authRoute)
 app.use('/home', homeRoute)
+app.use('/user', userRoute)
 app.use('/backup', backupRoute)
 
 

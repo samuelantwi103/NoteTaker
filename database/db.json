@@ -2,7 +2,7 @@
   "title": "Note Taker",
   "version": "1.0.0",
   "dateCreated": "2025-05-02T19:01:31.357Z",
-  "dateUpdated": "2025-05-10T23:17:50.410Z",
+  "dateUpdated": "2025-05-12T10:17:46.695Z",
   "data": [
     {
       "id": "bc2fee19-5842-42f9-98a2-ac3681639436",
@@ -12,12 +12,11 @@
       "lastName": "Antwi",
       "otherNames": "K. A.",
       "role": "admin",
-      "password": "$2b$10$WZrgDkdGkeJWryG4SOvgz./ghCfY4i5.fm/WOYEr6OIs/VT4ZX16G",
+      "password": "$2b$10$4zAru5MayfXjx.zzE1D17e/.oi0IDCE.RBDCByXPxJ.hHsFlCuXUe",
       "dateCreated": "2025-05-02T23:44:30.168Z",
-      "dateUpdated": "2025-05-10T19:22:59.717Z",
-      "notes": [],
-      "otp": 416376,
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJjMmZlZTE5LTU4NDItNDJmOS05OGEyLWFjMzY4MTYzOTQzNiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDY3ODYxMjYsImV4cCI6MTc0Njc4NjcyNn0.SP1H3Mzrc5_PmADxBYvWUZ2ce0580dNK4x0K75-N1ms"
+      "dateUpdated": "2025-05-12T10:17:46.695Z",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJjMmZlZTE5LTU4NDItNDJmOS05OGEyLWFjMzY4MTYzOTQzNiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDcwNDQ2NzksImV4cCI6MTc0NzA0NTI3OX0.Dd2weDSrYU8ebXk89C1rAF0HzF1lc7Uc4FHlygweCPY",
+      "notes": []
     },
     {
       "id": "9a302ee8-aa05-4de8-b763-f65636a200a2",

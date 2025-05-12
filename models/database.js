@@ -189,8 +189,8 @@ class Database {
     return userInfo
   }
 
-  // Ge
-  findUserId(username, email) {
+  // Get user index
+  findUserIndex(username, email) {
     if (username != null || email != null) {
       var userId
       if (username != null) {
@@ -275,7 +275,7 @@ class Database {
   }
 
   createOTP(username, email, otp) {
-    const index = this.findUserId(username, email)
+    const index = this.findUserIndex(username, email)
     const userData = this.findUser(username, email)
 
 
@@ -336,7 +336,7 @@ class Database {
   }
 
   clearOTP(username, email) {
-    const index = this.findUserId(username, email)
+    const index = this.findUserIndex(username, email)
     const userData = this.findUser(username, email)
 
 
