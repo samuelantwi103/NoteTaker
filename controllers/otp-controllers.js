@@ -63,7 +63,7 @@ const createOTP = async (req, res) => {
 
 const verifyOTP = (req, res) => {
   try {
-    const { username, email, otp } = req.body
+    const { username, email, otp, clear } = req.body
     const isVerified = db.verifyOTP(username, email, otp)
 
     if (!isVerified) {
@@ -78,6 +78,8 @@ const verifyOTP = (req, res) => {
         message: isVerified.message
       })
     }
+    if (clear === true)
+      db.clearOTP(username, email)
   } catch (error) {
     console.log(error)
     return res.status(500).json({

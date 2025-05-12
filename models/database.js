@@ -330,7 +330,7 @@ class Database {
         message: 'Invalid OTP'
       }
     }
-    this.clearOTP(username, email)
+    
     this.save()
     return true
   }
