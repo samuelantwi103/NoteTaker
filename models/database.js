@@ -179,6 +179,14 @@ class Database {
       this.save()
       return false
     }
+    // Check activated
+    if (userInfo.isActivated === false) {
+      console.log("User not activated")
+      return {
+        status: false,
+        message: "User not activated"
+      }
+    }
       // Generate Token
       token = jwt.sign({
         id: userInfo.id,
@@ -204,14 +212,6 @@ class Database {
         this.data[index] = userInfo
       }
 
-      // Check activated
-      if (userInfo.isActivated === false) {
-        console.log("User not activated")
-        return {
-          status: false,
-          message: "User not activated"
-        }
-      }
       // console.log(this.data)
 
       // Create Session
