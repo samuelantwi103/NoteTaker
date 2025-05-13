@@ -83,7 +83,7 @@ const updateUser = async (req, res) => {
   }
 
   // Create User Object
-  const user = new User(userData.id, firstName, lastName, otherNames, userData.role, username, email, password, userData.dateCreated, new Date(), userData.notes, userData.token)
+  const user = new User(userData.id, firstName, lastName, otherNames, userData.role, username, email, password, userData.dateCreated, new Date(), userData.notes, userData.token, userData.isActivated)
 
   // Update User
   const isUpdated = db.updateUser(user)
@@ -134,7 +134,7 @@ const resetPassword = async (req, res) => {
 
     const hpassword = await bcrypt.hash(password.toString(), await bcrypt.genSalt(10))
 
-    const user = new User(userData.id, userData.firstName, userData.lastName, userData.otherNames, userData.role, userData.username, userData.email, hpassword, userData.dateCreated, new Date(), userData.notes, userData.token)
+    const user = new User(userData.id, userData.firstName, userData.lastName, userData.otherNames, userData.role, userData.username, userData.email, hpassword, userData.dateCreated, new Date(), userData.notes, userData.token, userData.isActivated)
     const isUpdated = db.updateUser(user)
 
     if (!isUpdated) {
@@ -245,7 +245,7 @@ const setRole = async (req, res) => {
   }
 
   // Create User Object
-  const user = new User(userData.id, firstName, lastName, otherNames, userData.role, username, email, password, userData.dateCreated, new Date(), userData.notes, userData.token)
+  const user = new User(userData.id, firstName, lastName, otherNames, userData.role, username, email, password, userData.dateCreated, new Date(), userData.notes, userData.token, userData.isActivated)
 
   // Update User
   const isUpdated = db.updateUser(user)

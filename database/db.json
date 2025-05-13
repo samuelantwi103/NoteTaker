@@ -2,7 +2,7 @@
   "title": "Note Taker",
   "version": "1.0.0",
   "dateCreated": "2025-05-02T19:01:31.357Z",
-  "dateUpdated": "2025-05-13T07:04:03.573Z",
+  "dateUpdated": "2025-05-13T09:51:03.264Z",
   "data": [
     {
       "id": "bc2fee19-5842-42f9-98a2-ac3681639436",
@@ -12,10 +12,10 @@
       "lastName": "Antwi",
       "otherNames": "K. A.",
       "role": "admin",
-      "password": "$2b$10$4zAru5MayfXjx.zzE1D17e/.oi0IDCE.RBDCByXPxJ.hHsFlCuXUe",
+      "password": "$2b$10$6e3t9.TP8nsxKQnrRRCS8eqWrpnJX5O6yKzrrYYnBzA.62FYcYMAy",
       "dateCreated": "2025-05-02T23:44:30.168Z",
-      "dateUpdated": "2025-05-12T10:17:46.695Z",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJjMmZlZTE5LTU4NDItNDJmOS05OGEyLWFjMzY4MTYzOTQzNiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDcwNDQ2NzksImV4cCI6MTc0NzA0NTI3OX0.Dd2weDSrYU8ebXk89C1rAF0HzF1lc7Uc4FHlygweCPY",
+      "dateUpdated": "2025-05-13T09:38:37.118Z",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJjMmZlZTE5LTU4NDItNDJmOS05OGEyLWFjMzY4MTYzOTQzNiIsInVzZXJuYW1lIjoic2FtdWVsYW50d2kxMDMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDcxMjkxMTcsImV4cCI6MTc0NzEyOTcxN30.sdW6GX0W2CDjPvK7W_PpUoSCVNelsMk6-vNLu39tzLY",
       "notes": []
     },
     {
@@ -73,6 +73,21 @@
       "dateUpdated": "2025-05-13T07:03:00.957Z",
       "token": "",
       "notes": []
+    },
+    {
+      "id": "ecf53244-e877-4b47-a080-f41b19962826",
+      "username": "samant2",
+      "email": "samant203@gmail.com",
+      "firstName": "sam",
+      "otherNames": "K. W.",
+      "role": "user",
+      "password": "$2b$10$5TuDlz8CVqhfHZuEANzys.G3u6sYqKrOQi/07xgxb99IDr2.YfPFy",
+      "dateCreated": "2025-05-13T09:39:41.141Z",
+      "dateUpdated": "2025-05-13T09:39:41.142Z",
+      "token": "",
+      "notes": [],
+      "isActivated": false,
+      "otp": 733875
     }
   ]
 }

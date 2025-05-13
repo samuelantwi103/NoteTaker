@@ -77,8 +77,8 @@ class Database {
     if (index === -1 && emailIndex === -1) {
 
       // console.log(password)
-      // console.log(index)
-      this.data.push({ ...user.getInfo(), isActivated: false })
+      // console.log(user.getInfo())
+      this.data.push(user.getInfo())
     } else if (index !== -1) {
       // console.log(index)
       console.log("Username already exists")
@@ -147,7 +147,7 @@ class Database {
 
     delete userData.isActivated
     this.data[index] = userData
-    console.log(userData)
+    // console.log(userData)
     this.clearOTP(username, email)
     this.save()
     return true
@@ -160,7 +160,7 @@ class Database {
     const userInfo = this.findUser(username, email)
     // console.log(userInfo)
 
-    if (userInfo !== undefined) {
+    if (userInfo != undefined) {
       if (!userInfo) {
         console.log("User not found")
         return false
@@ -173,6 +173,12 @@ class Database {
         return
       }
 
+    } else {
+      // console.log(userInfo)
+      console.log("User does not exist")
+      this.save()
+      return false
+    }
       // Generate Token
       token = jwt.sign({
         id: userInfo.id,
@@ -197,18 +203,21 @@ class Database {
         ))
         this.data[index] = userInfo
       }
+
+      // Check activated
+      if (userInfo.isActivated === false) {
+        console.log("User not activated")
+        return {
+          status: false,
+          message: "User not activated"
+        }
+      }
       // console.log(this.data)
 
       // Create Session
       await User.createSession(username, email, password, userInfo)
 
       // this.data.push(user.getInfo())
-    } else {
-      // console.log(userInfo)
-      console.log("User does not exist")
-      this.save()
-      return false
-    }
 
     // console.log(this.data)
     this.save()
@@ -239,7 +248,7 @@ class Database {
       console.log("Please provide an email or username")
       return false
     }
-    console.log(userInfo)
+    // console.log(userInfo)
     return userInfo
   }
 

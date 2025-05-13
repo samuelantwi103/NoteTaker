@@ -14,17 +14,22 @@ const loginUser = async (req, res) => {
 
     if (!isLoggedIn) {
       if (isLoggedIn == undefined) {
-        res.status(406).json({
+        return res.status(406).json({
           success: false,
           message: "Wrong credentials",
         })
-        return
       }
-      res.status(404).json({
+
+      return res.status(404).json({
         success: false,
         message: "User not found",
       })
-      return
+
+    } else if (isLoggedIn.status === false) {
+      return res.status(406).json({
+        success: false,
+        message: isLoggedIn.message,
+      })
     }
     // console.log("is not logged in")
 
@@ -49,7 +54,7 @@ const registerUser = async (req, res) => {
   try {
     const hpassword = await bcrypt.hash(password, await bcrypt.genSalt(10))
 
-    const user = new User(null, firstName, lastName, otherNames, role, username, email, hpassword, null, null, null, null)
+    const user = new User(null, firstName, lastName, otherNames, role, username, email, hpassword, null, null, null, null, false)
     const isCreated = db.createUser(user)
 
     if (isCreated.success === false) {
@@ -99,7 +104,7 @@ const forgotPassword = async (req, res) => {
   try {
     const hpassword = await bcrypt.hash(password.toString(), await bcrypt.genSalt(10))
 
-    const user = new User(userData.id, userData.firstName, userData.lastName, userData.otherNames, userData.role, userData.username, userData.email, hpassword, userData.dateCreated, new Date(), userData.notes, userData.token)
+    const user = new User(userData.id, userData.firstName, userData.lastName, userData.otherNames, userData.role, userData.username, userData.email, hpassword, userData.dateCreated, new Date(), userData.notes, userData.token, userData.isActivated)
     const isUpdated = db.updateUser(user)
 
     if (!isUpdated) {

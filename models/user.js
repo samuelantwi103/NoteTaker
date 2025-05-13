@@ -4,7 +4,7 @@
 const uuid = require('uuid')
 
 class User {
-  constructor(id, firstName, lastName, otherNames, role = "user", username, email, password, dateCreated, dateUpdated, notes, token) {
+  constructor(id, firstName, lastName, otherNames, role = "user", username, email, password, dateCreated, dateUpdated, notes, token, isActivated) {
     if (id === null) {
       this.id = uuid.v4()
     } else {
@@ -41,6 +41,11 @@ class User {
     } else {
       this.token = token
     }
+    if (isActivated === null) {
+      this.isActivated = ""
+    } else {
+      this.isActivated = isActivated
+    }
 
   }
 
@@ -49,7 +54,7 @@ class User {
 
 
 
-    return new User(userInfo.id, userInfo.firstName, userInfo.lastName, userInfo.otherNames, userInfo.role, username, email, password, userInfo.dateCreated, userInfo.dateUpdated, userInfo.notes, userInfo.token)
+    return new User(userInfo.id, userInfo.firstName, userInfo.lastName, userInfo.otherNames, userInfo.role, username, email, password, userInfo.dateCreated, userInfo.dateUpdated, userInfo.notes, userInfo.token, userInfo.isActivated)
   }
 
   static findNote(username, email) {
@@ -85,7 +90,8 @@ class User {
       dateCreated: this.dateCreated,
       dateUpdated: this.dateUpdated,
       token: this.token,
-      notes: this.notes
+      notes: this.notes,
+      isActivated: this.isActivated
     }
   }
 
