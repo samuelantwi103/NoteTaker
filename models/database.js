@@ -78,7 +78,7 @@ class Database {
 
       // console.log(password)
       // console.log(index)
-      this.data.push(user.getInfo())
+      this.data.push({ ...user.getInfo(), isActivated: false })
     } else if (index !== -1) {
       // console.log(index)
       console.log("Username already exists")
@@ -99,6 +99,59 @@ class Database {
     // console.log(this.data)
     this.save()
     return true
+  }
+
+  activateUser(username, email) {
+
+    const userData = this.findUser(username, email)
+
+
+    if (userData !== undefined) {
+      if (!userData) {
+        console.log("User not found")
+        return false
+      }
+
+      if (userData.isActivated === undefined) {
+        console.log('Account already activated!')
+
+        return {
+          success: false,
+          message: 'Account has been activated already!'
+        }
+      }
+
+
+
+    } else {
+      // console.log(userInfo)
+      console.log("User does not exist")
+      this.save()
+      return false
+    }
+
+
+    // Clearing activation boolean
+    const index = this.findUserIndex(username, email)
+
+
+    if (index === -1) {
+      console.log("User not found")
+      return false
+    }
+    // Update date
+    userData.dateUpdated = new Date()
+
+    username = userData.username
+    email = userData.email
+
+    delete userData.isActivated
+    this.data[index] = userData
+    console.log(userData)
+    this.clearOTP(username, email)
+    this.save()
+    return true
+
   }
 
   // Login a user
@@ -186,6 +239,7 @@ class Database {
       console.log("Please provide an email or username")
       return false
     }
+    console.log(userInfo)
     return userInfo
   }
 
@@ -330,7 +384,7 @@ class Database {
         message: 'Invalid OTP'
       }
     }
-    
+
     this.save()
     return true
   }
@@ -346,8 +400,6 @@ class Database {
     }
     // Update date
     userData.dateUpdated = new Date()
-
-    const { id, firstName, lastName, otherNames, role, password, dateCreated, dateUpdated, notes, token } = userData
 
     username = userData.username
     email = userData.email

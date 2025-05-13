@@ -63,9 +63,8 @@ const createOTP = async (req, res) => {
 
 const verifyOTP = (req, res) => {
   try {
-    const { username, email, otp, clear } = req.body
-    const isVerified = db.verifyOTP(username, email, otp)
-
+    const { username, email, otp, clear, activate } = req.body
+    var isVerified = db.verifyOTP(username, email, otp)
     if (!isVerified) {
       return res.status(404).json({
         success: false,
@@ -78,8 +77,24 @@ const verifyOTP = (req, res) => {
         message: isVerified.message
       })
     }
-    if (clear === true)
+
+    // Activation
+    if (activate === true)
+      isVerified = db.activateUser(username, email)
+    if (clear === true && activate === undefined)
       db.clearOTP(username, email)
+    if (!isVerified) {
+      return res.status(404).json({
+        success: false,
+        message: "User does not exist!"
+      })
+    }
+    else if (isVerified.success == false) {
+      return res.status(403).json({
+        success: false,
+        message: isVerified.message
+      })
+    }
   } catch (error) {
     console.log(error)
     return res.status(500).json({

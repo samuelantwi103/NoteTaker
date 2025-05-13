@@ -2,7 +2,7 @@
   "title": "Note Taker",
   "version": "1.0.0",
   "dateCreated": "2025-05-02T19:01:31.357Z",
-  "dateUpdated": "2025-05-12T10:17:46.695Z",
+  "dateUpdated": "2025-05-13T07:04:03.573Z",
   "data": [
     {
       "id": "bc2fee19-5842-42f9-98a2-ac3681639436",
@@ -59,6 +59,19 @@
       "dateCreated": "2025-05-09T12:02:04.550Z",
       "dateUpdated": "2025-05-10T23:15:58.964Z",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlY2ZlYmZkLWM4MTYtNDliZS04ZDgxLTI3MzU0MmM3NGNjZSIsInVzZXJuYW1lIjoiZ2lsYmVydGFudHdpMzAzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDY5MTg2NTQsImV4cCI6MTc0NjkxOTI1NH0.xsG2GR1geoIBYONETkm9FAqqgcSHz9KEw1QHl6fylj4",
+      "notes": []
+    },
+    {
+      "id": "20afa326-04e4-45cc-8647-0d33eaf7bea3",
+      "username": "samant",
+      "email": "samant103@gmail.com",
+      "firstName": "sam",
+      "otherNames": "K. W.",
+      "role": "user",
+      "password": "$2b$10$SsinhwK59iPOhUC472fkT.Nc10H2b84rod706XsmtcVsaeHY/DFMa",
+      "dateCreated": "2025-05-13T06:41:11.078Z",
+      "dateUpdated": "2025-05-13T07:03:00.957Z",
+      "token": "",
       "notes": []
     }
   ]

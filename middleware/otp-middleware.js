@@ -3,8 +3,34 @@ const { mail } = require("../services/mail-service")
 
 
 const verifyEmail = async (req, res, next) => {
+  const { email, firstName, username } = req.body
 
-  const {  email, firstName } = req.body
+  // Verify email and username
+  const index = db.getInfo().data.findIndex((userData =>
+    userData.username === username
+  ))
+  const emailIndex = db.getInfo().data.findIndex((userData =>
+    userData.email === email
+  ))
+  if (index !== -1) {
+    // console.log(index)
+    console.log("Username already exists")
+
+    return res.status(403).json({
+      success: false,
+      message: "Username already exists",
+    })
+  } else if (emailIndex !== -1) {
+    // console.log(index)
+    console.log("Email already exists")
+
+    return res.status(403).json({
+      success: false,
+      message: "Email already exists",
+    })
+  }
+
+  // Generate OTP
   const otp = Math.floor(100000 + Math.random() * 900000)
   // console.log(isVerified)
   try {
